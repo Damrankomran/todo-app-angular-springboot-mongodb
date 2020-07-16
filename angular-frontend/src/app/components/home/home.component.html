@@ -1,0 +1,98 @@
+<div class="page home">
+  <div class="container">
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="page-title">
+          <h2>
+            <img class="svg" src="assets/svg/file.png" />
+            <span>Todo List App</span>
+          </h2>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <form class="example-form">
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Ad new item to do" #newTodo>
+          </mat-form-field>
+          <button mat-raised-button color="primary" type="submit" (click)="addTodo(newTodo)" >Add</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="row mt-4">
+      <div class="col-md-12">
+        <mat-card class="d-flex">
+          <div class="example-container">
+            <h2>Pending</h2>
+
+            <div cdkDropList #pendingList="cdkDropList" [cdkDropListData]="data.pendingList" [cdkDropListConnectedTo]="[inProgressList]"
+              class="example-list" (cdkDropListDropped)="drop($event, 'pending')">
+              <div class="example-box" *ngFor="let item of data.pendingList" cdkDrag>
+                <img class="svg" src="assets/svg/clock.png">
+                <span class="todo-title">
+                  {{item.name}}
+                </span>
+                <div class="button">
+                  <button mat-icon-button color="warn" (click)="removeTodo(item.workID)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </div>
+              </div>
+              <div class="text-center pt-3" *ngIf="data.pendingList?.length === 0"><small>Item not found.</small></div>
+            </div>
+          </div>
+
+          <div class="example-container">
+            <h2>In Progress</h2>
+
+            <div cdkDropList #inProgressList="cdkDropList" [cdkDropListData]="data.inProgressList" [cdkDropListConnectedTo]="[doneList,pendingList]"
+              class="example-list" (cdkDropListDropped)="drop($event, 'inProgress')">
+              <div class="example-box" *ngFor="let item of data.inProgressList" cdkDrag>
+                <img class="svg" src="assets/svg/hourglass.png">
+                <span class="todo-title">
+                  {{item.name}}
+                </span>
+                <div class="button">
+                  <button mat-icon-button color="warn" (click)="removeTodo(item.workID)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </div>
+              </div>
+              <div class="text-center pt-3" *ngIf="data.inProgressList?.length === 0"><small>Item not found.</small></div>
+            </div>
+          </div>
+
+          <div class="example-container">
+            <h2>Done</h2>
+
+            <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="data.doneList" [cdkDropListConnectedTo]="[inProgressList]"
+              class="example-list" (cdkDropListDropped)="drop($event, 'done')">
+              <div class="example-box" *ngFor="let item of data.doneList" cdkDrag>
+                <img class="svg" src="assets/svg/like.png">
+                <span class="todo-title">
+                  {{item.name}}
+                </span>
+                <div class="button">
+                  <button mat-icon-button color="warn" (click)="removeTodo(item.workID)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </div>
+              </div>
+              <div class="text-center pt-3" *ngIf="data.doneList?.length === 0"><small>Item not found.</small></div>
+            </div>
+          </div>
+
+
+        </mat-card>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 text-center mt-2">
+        <small>Copyrigth 2020 Todo List App</small>
+      </div>
+    </div>
+
+  </div>
+</div>
