@@ -1,8 +1,10 @@
 # Todo List Application with SpringBoot, Angular and MongoDB
 * This is a todo application where you can save your task, edit it and mark it done.
 * Back-end: Spring-Boot 2.3.1
-* Front-end: Angular 10.0.1
+* Front-end: Angular 10.0.1 
 * Database: Mongo DB
+
+* Front-end Tutorial: https://www.youtube.com/watch?v=4_Y6jLVBY78&list=PLqG356ExoxZUOaq1ZiQEYBzVAKEB8BVL8&index=15
 
 ## Screenshots
 ### Add Item
